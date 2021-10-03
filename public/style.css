@@ -67,18 +67,47 @@
     padding: 1rem;
 }
 
+.cardContainer {
+    margin: var(--default-margin);
+    padding: 1rem;
+    display: flex;
+    /* align-items:  */
+    justify-content: space-between;
+}
+
 /**************  ELEMENTS *******************/
+header {
+    padding: 1rem;
+}
 
 /************** SPECIFIC CSS ****************/
 
-/* title */
+/* title / header */
+.title-box {
+    width: fit-content;
+    display: flex;
+    margin: auto;
+}
+
 .title {
-    padding: 1rem;
+    /* padding: 1rem; */
     font-size: 5rem;
+    padding: 0 1rem;
+}
+
+header img {
+    height: 4rem;
+    width: 4rem;
+    margin: auto 0;
 }
 
 
+
 /* searchbar */
+
+.searchBar {
+    margin-top: 2rem;
+}
 
 .searchBar .searchBar-input {
     font-size: 3rem;
@@ -118,4 +147,78 @@
     border: 3px solid black;
     border-radius: 15px;
     margin: auto;
+}
+
+/* Pokemon Cards*/
+
+.pokemon-card {
+    max-width: 25%;
+    height: 35rem;
+    background-color: #2ecc71;
+    padding: 2rem;
+    border-radius: 15px;
+}
+
+.pokemon-card .pokemon-container {
+    margin: 1rem;
+    position: relative;
+}
+
+.pokemon-card .pokemon-container .card-top-info {
+    /* position: relative; */
+    height: 4rem;
+}
+
+.pokemon-card .pokemon-container .card-top-info .pokemon-index {
+    font-size: 2.5rem;
+    position: absolute;
+}
+
+.pokemon-card .pokemon-container .card-top-info .pokemon-name {
+    font-size: 2.5rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.pokemon-card .pokemon-container .image-container {
+    width: 80%;
+    padding: 3rem;
+    margin: auto;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.pokemon-card .pokemon-container .image-container .pokemon-image {
+    width: 100%;
+    height: 100%;
+}
+
+.pokemon-card .pokemon-container .card-bottom-info .pokemon-type {
+    display: block;
+    width: fit-content;
+    margin: 1rem auto;
+    display: flex;
+    flex-direction: row;
+    /* FIX THIS */
+    justify-content: space-evenly;
+    align-content: space-between;
+
+}
+
+
+
+/* Capsule */
+.capsule {
+    background-color: #27ae60;
+    border: 2px solid white;
+    max-width: fit-content;
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+    margin: 0 1rem;
+    /* transform: translate(0, 50%); */
+}
+
+.capsule .capsule-text {
+    font-size: 1.5rem;
 }
