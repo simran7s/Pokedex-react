@@ -5,7 +5,7 @@
     --secondary: blue;
     --dark: #000;
     --light: #fff;
-    --default-margin: 7% 15%
+    --default-margin: 2rem 15%
 }
 
 * {
@@ -67,12 +67,55 @@
     padding: 1rem;
 }
 
+/**************  ELEMENTS *******************/
 
+/************** SPECIFIC CSS ****************/
 
-
-/* SPECIFIC CSS */
-
+/* title */
 .title {
     padding: 1rem;
     font-size: 5rem;
+}
+
+
+/* searchbar */
+
+.searchBar .searchBar-input {
+    font-size: 3rem;
+    border: none;
+    padding-left: 1rem;
+    border-radius: 15px;
+    vertical-align: middle;
+    outline: none;
+}
+
+.searchBar .searchBar-btn {
+    font-size: 3rem;
+    text-align: center;
+    width: 5rem;
+    height: 5rem;
+    border: none;
+    border-radius: 0 15px 15px 0;
+    vertical-align: middle;
+    position: relative;
+}
+
+.searchBar .searchBar-btn:hover {
+    cursor: pointer;
+}
+
+.searchBar .searchBar-btn .fa-search {
+    /* position center icon */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.searchBar .searchBar-border {
+    height: fit-content;
+    width: fit-content;
+    border: 3px solid black;
+    border-radius: 15px;
+    margin: auto;
 }
