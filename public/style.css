@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@700&display=swap');
+
+:root {
+    --primary: #c0392b;
+    --secondary: blue;
+    --dark: #000;
+    --light: #fff;
+    --default-margin: 7% 15%
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-size: 10px;
+    font-family: 'Teko', sans-serif;
+}
+
+
+/*********** UTILITIES ****************/
+
+/* COLOURING */
+.bg-primary {
+    background-color: var(--primary);
+}
+
+.bg-secondary {
+    background-color: var(--secondary);
+}
+
+.bg-dark {
+    background-color: var(--dark);
+}
+
+.bg-light {
+    background-color: var(--light);
+}
+
+.text-primary {
+    color: var(--primary);
+}
+
+.text-secondary {
+    color: var(--secondary);
+}
+
+.text-dark {
+    color: var(--dark);
+}
+
+.text-light {
+    color: var(--light);
+}
+
+/* ALIGNMENT */
+.mg-auto {
+    margin: auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.container {
+    margin: var(--default-margin);
+    padding: 1rem;
+}
+
+
+
+
+/* SPECIFIC CSS */
+
+.title {
+    padding: 1rem;
+    font-size: 5rem;
+}
