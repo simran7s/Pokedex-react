@@ -7,11 +7,28 @@ function App() {
     <div className="App">
       <Title />
       <SearchBar />
-      <div className="cardContainer">
+
+      <div className="grid-container">
+        <PokemonCard />
+        <PokemonCard />
+        <PokemonCard />
+        <PokemonCard />
+        <PokemonCard />
+        <PokemonCard />
+        <PokemonCard />
+        <PokemonCard />
+        <PokemonCard />
+        <PokemonCard />
+        <PokemonCard />
+        <PokemonCard />
+        <PokemonCard />
+        <PokemonCard />
+        <PokemonCard />
         <PokemonCard />
         <PokemonCard />
         <PokemonCard />
       </div>
+
     </div>
   );
 }
