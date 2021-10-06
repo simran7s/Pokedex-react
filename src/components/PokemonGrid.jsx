@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import PokemonCard from "./PokemonCard"
 
-function PokemonGrid({ pokemon }) {
+function PokemonGrid({ pokemon, setLoading }) {
 
 
 
@@ -10,15 +10,14 @@ function PokemonGrid({ pokemon }) {
     // }, [pokemon])
 
     function getCards(ps) {
-        console.log("***************")
-        console.log(pokemon)
-        console.log("***************")
+        setLoading(true);
         return (
             ps.map((p, index) => (
                 <PokemonCard
                     key={p.name}
                     index={p.name}
                     pokemon={p}
+                    setLoading={setLoading}
                 />
             ))
         )

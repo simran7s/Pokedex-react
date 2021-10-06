@@ -7,13 +7,8 @@ import SearchBar from './components/SearchBar';
 import Title from './components/Title';
 import pokemonAPI from './utilities/api/pokemon.api';
 
-const NUMBER_OF_POKEMON_ON_LOAD = 30; //890 max
-
-
+const NUMBER_OF_POKEMON_ON_LOAD = 30; //890 max for regular pokemon
 const loadPokemon = new pokemonAPI();
-
-
-
 
 function App() {
   const [pokemon, setPokemon] = useState([])
@@ -21,20 +16,8 @@ function App() {
   const [nextURL, setNextURL] = useState("")
   const [prevURL, setPrevURL] = useState("")
   const [loading, setLoading] = useState(true)
-  const [empty, setEmpty] = useState(false)
-
-  useEffect(() => {
-    setLoading(true)
-    loadPokemon.get(`https://pokeapi.co/api/v2/pokemon?limit=${NUMBER_OF_POKEMON_ON_LOAD}`)
-      .then(data => {
-        console.log(data.results[0])
-        setNextURL(data.next)
-        setPrevURL(data.previous)
-        setLoading(false)
-        setPokemon(data.results)
-      })
-      .catch(err => console.log(err))
-  }, [])
+  const [disablePrev, setDisablePrev] = useState(false)
+  const [disableNext, setDisableNext] = useState(false)
 
   useEffect(() => {
     setLoading(true)
@@ -43,15 +26,25 @@ function App() {
         console.log(data.results[0])
         setNextURL(data.next)
         setPrevURL(data.previous)
-        if (empty) {
-          // setPokemon([])
-          // setPokemon([{ name: "simran", url: "https://pokeapi.co/api/v2/pokemon/31/" }, { name: "Sunny", url: "https://pokeapi.co/api/v2/pokemon/32/" }])
-          setPokemon(data.results)
-        }
+        setPokemon(data.results)
         setLoading(false)
       })
       .catch(err => console.log(err))
   }, [currentURL])
+
+
+  useEffect(() => {
+    if (!nextURL) {
+      setDisableNext(true);
+    } else {
+      setDisableNext(false);
+    }
+    if (!prevURL) {
+      setDisablePrev(true);
+    } else {
+      setDisablePrev(false);
+    }
+  }, [nextURL, prevURL])
 
   if (loading) return (
     <div className="App">
@@ -63,22 +56,20 @@ function App() {
 
   function loadNext() {
     setCurrentURL(nextURL);
-    setEmpty(true)
   }
   function loadPrev() {
     setCurrentURL(prevURL);
-    setEmpty(true)
   }
-
-
 
   return (
     <div className="App">
       <Title />
       <SearchBar />
-      <PokemonGrid pokemon={pokemon} />
-      <LoadButton text="PREV PAGE" onClick={loadPrev} />
-      <LoadButton text="NEXT PAGE" onClick={loadNext} />
+      <PokemonGrid pokemon={pokemon} setLoading={setLoading} />
+      <div className="btn-container">
+        <LoadButton text="PREV PAGE" onClick={loadPrev} disable={disablePrev} />
+        <LoadButton text="NEXT PAGE" onClick={loadNext} disable={disableNext} />
+      </div>
       <Footer />
     </div>
   );

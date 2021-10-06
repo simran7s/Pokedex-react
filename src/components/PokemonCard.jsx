@@ -4,7 +4,7 @@ import Capsule from "./Capsule"
 import pokemonAPI from '../utilities/api/pokemon.api'
 
 function PokemonCard(props) {
-    const { index, pokemon } = props
+    const { index, pokemon, setLoading } = props
     const [currentPokemon, setCurrentPokemon] = useState({
         name: 'loading',
         sprites: {
@@ -21,6 +21,7 @@ function PokemonCard(props) {
         const loadPokemon = new pokemonAPI()
         // MAIN DETAILS
         if (pokemon?.url) {
+            setLoading(true)
             loadPokemon.get(`https://pokeapi.co/api/v2/pokemon/${index}`)
                 .then(data => {
                     console.log(data)
@@ -29,20 +30,22 @@ function PokemonCard(props) {
                     setSpeciesURL(data.species.url)
                 })
                 .catch(err => console.log(err))
+            setLoading(false)
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.pokemon])
 
     useEffect(() => {
         const loadPokemon = new pokemonAPI()
-
         if (speciesURL) {
+            setLoading(true)
             loadPokemon.get(speciesURL)
                 .then((data) => {
                     setColour(data.color.name)
                     // console.log(colour);
 
                 }).catch(err => console.log(err))
+            setLoading(false)
         }
     }, [speciesURL])
 
@@ -58,7 +61,7 @@ function PokemonCard(props) {
             <div className="pokemon-container text-light">
                 <div className="card-top-info">
                     <p className="pokemon-index">{currentPokemon.id}</p>
-                    <p className="pokemon-name" >{currentPokemon.name}</p>
+                    <p className={`pokemon-name ${currentPokemon.name.length > 21 && "smaller-text"}`} >{currentPokemon.name}</p>
                 </div>
                 <div className="image-container">
                     <img className="pokemon-image" src={currentPokemon.sprites.front_default} alt={currentPokemon.name} />

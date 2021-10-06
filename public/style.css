@@ -116,9 +116,21 @@
     border-radius: 5px;
     font-size: 2rem;
     color: var(--light);
+    cursor: pointer;
 }
 
+.btn:disabled {
+    cursor: not-allowed;
+    background-color: #d8877e;
+    color: white;
+}
+
+
 /**************  ELEMENTS *******************/
+html {
+    overflow-x: hidden;
+}
+
 header,
 footer {
     padding: 1rem;
@@ -273,11 +285,20 @@ header img {
 
 /* Load More Button */
 .btn-container {
-    position: relative;
     width: 100vw;
-    text-align: center;
-    margin-bottom: 2rem;
+    /* text-align: center; */
+    /* margin-bottom: 2rem; */
+    display: flex;
+    align-content: center;
+    justify-content: center;
 }
+
+.div {
+    margin: 0rem 1rem 2rem 1rem;
+
+}
+
+
 
 
 

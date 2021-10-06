@@ -7,12 +7,14 @@ function LoadButton(props) {
     // const loadPokemon = new pokemonAPI()
     const { text, onClick } = props
     return (
-        <div className="btn-container">
-            <button className="btn btn-load bg-primary" onClick={() => {
+        <div className="div">
+            <button className="btn btn-load bg-primary" disabled={props.disable} onClick={() => {
                 onClick();
                 console.log("clicked")
             }}>{text}</button>
+
         </div>
+
     )
 }
 
