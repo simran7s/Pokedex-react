@@ -8,15 +8,14 @@ function PokemonCard(props) {
     const [currentPokemon, setCurrentPokemon] = useState({
         name: 'loading',
         sprites: {
-            front_default: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg'
+            // front_default: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg'
+            front_default: "https://i.gifer.com/Yg6z.gif"
         }
     })
     const [type, setType] = useState("")
     const [speciesURL, setSpeciesURL] = useState("")
-    const [name, setName] = useState("")
-
     const [colour, setColour] = useState("")
-    let cardStyle;
+
 
     useEffect(() => {
         const loadPokemon = new pokemonAPI()
@@ -24,20 +23,15 @@ function PokemonCard(props) {
         if (pokemon?.url) {
             loadPokemon.get(`https://pokeapi.co/api/v2/pokemon/${index}`)
                 .then(data => {
+                    console.log(data)
                     setCurrentPokemon(data)
-                    setName(data.name)
                     setType(data.types[0].type.name)
                     setSpeciesURL(data.species.url)
                 })
                 .catch(err => console.log(err))
         }
-        // setType(currentPokemon.types[0].type.name)
-
-        // COLOUR
-
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [pokemon])
+    }, [props.pokemon])
 
     useEffect(() => {
         const loadPokemon = new pokemonAPI()
