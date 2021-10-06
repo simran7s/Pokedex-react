@@ -1,13 +1,15 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import DetailedPokemon from './components/DetailedPokemon';
 import Footer from './components/Footer';
 import LoadButton from './components/LoadButton';
+import PokemonCard from './components/PokemonCard';
 import PokemonGrid from './components/PokemonGrid';
 import SearchBar from './components/SearchBar';
 import Title from './components/Title';
 import pokemonAPI from './utilities/api/pokemon.api';
 
-const NUMBER_OF_POKEMON_ON_LOAD = 30; //890 max for regular pokemon
+const NUMBER_OF_POKEMON_ON_LOAD = 30; //898 max for regular pokemon
 const loadPokemon = new pokemonAPI();
 
 function App() {
@@ -18,12 +20,13 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [disablePrev, setDisablePrev] = useState(false)
   const [disableNext, setDisableNext] = useState(false)
+  const [name, setName] = useState("");
+  const [data, setData] = useState({});
 
   useEffect(() => {
     setLoading(true)
     loadPokemon.get(currentURL)
       .then(data => {
-        console.log(data.results[0])
         setNextURL(data.next)
         setPrevURL(data.previous)
         setPokemon(data.results)
@@ -61,15 +64,49 @@ function App() {
     setCurrentURL(prevURL);
   }
 
+  function searchPokemon(name) {
+    // If name is given
+    if (name) {
+      loadPokemon.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
+        .then(data => {
+          setName(data.name)
+          setData({
+            url: `https://pokeapi.co/api/v2/pokemon/${name}`,
+            name: data.name,
+            info: data
+          })
+        })
+        .catch(err => console.log(err))
+    }
+    // Give no name is given (reset)
+    else {
+      setCurrentURL(`https://pokeapi.co/api/v2/pokemon?limit=${NUMBER_OF_POKEMON_ON_LOAD}`)
+      setName("")
+    }
+  }
+
   return (
     <div className="App">
       <Title />
-      <SearchBar />
-      <PokemonGrid pokemon={pokemon} setLoading={setLoading} />
-      <div className="btn-container">
-        <LoadButton text="PREV PAGE" onClick={loadPrev} disable={disablePrev} />
-        <LoadButton text="NEXT PAGE" onClick={loadNext} disable={disableNext} />
-      </div>
+      <SearchBar onClick={searchPokemon} />
+      {!name &&
+        <>
+          <PokemonGrid pokemon={pokemon} setLoading={setLoading} />
+          <div className="btn-container">
+            <LoadButton text="PREV PAGE" onClick={loadPrev} disable={disablePrev} />
+            <LoadButton text="NEXT PAGE" onClick={loadNext} disable={disableNext} />
+          </div>
+        </>
+      }
+      {/* {name && <DetailedPokemon name={name} data={data} />} */}
+      {name &&
+        <div className="grid-container">
+
+          <PokemonCard key={name} index={name} pokemon={data} setLoading={setLoading} />
+          <p></p>
+        </div>
+
+      }
       <Footer />
     </div>
   );

@@ -16,21 +16,19 @@ function PokemonCard(props) {
     const [speciesURL, setSpeciesURL] = useState("")
     const [colour, setColour] = useState("")
 
-
+    setLoading(true)
     useEffect(() => {
         const loadPokemon = new pokemonAPI()
         // MAIN DETAILS
         if (pokemon?.url) {
-            setLoading(true)
             loadPokemon.get(`https://pokeapi.co/api/v2/pokemon/${index}`)
                 .then(data => {
-                    console.log(data)
+
                     setCurrentPokemon(data)
                     setType(data.types[0].type.name)
                     setSpeciesURL(data.species.url)
                 })
                 .catch(err => console.log(err))
-            setLoading(false)
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.pokemon])
@@ -38,24 +36,19 @@ function PokemonCard(props) {
     useEffect(() => {
         const loadPokemon = new pokemonAPI()
         if (speciesURL) {
-            setLoading(true)
             loadPokemon.get(speciesURL)
                 .then((data) => {
                     setColour(data.color.name)
-                    // console.log(colour);
-
                 }).catch(err => console.log(err))
-            setLoading(false)
         }
     }, [speciesURL])
 
 
     useEffect(() => {
         currentPokemon.colour = colour
-        // console.log("*********************");
-        // console.log(currentPokemon.colour)
     }, [colour, currentPokemon])
 
+    setLoading(false)
     return (
         <div className={`pokemon-card ${colour}`} id={currentPokemon.name} >
             <div className="pokemon-container text-light">

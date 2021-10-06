@@ -43,6 +43,9 @@
     }
 }
 
+.smaller-text {
+    font-size: 1rem;
+}
 
 /* COLOURING */
 .bg-primary {
@@ -263,7 +266,6 @@ header img {
 .pokemon-card {
     transition: 1s ease-in;
 }
-
 
 
 /* Capsule */

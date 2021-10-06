@@ -3,12 +3,6 @@ import PokemonCard from "./PokemonCard"
 
 function PokemonGrid({ pokemon, setLoading }) {
 
-
-
-    // useEffect(() => {
-    //     getCards(pokemon)
-    // }, [pokemon])
-
     function getCards(ps) {
         setLoading(true);
         return (
