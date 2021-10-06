@@ -169,6 +169,7 @@ header img {
     background-color: #2ecc71;
     padding: 2rem;
     border-radius: 15px;
+    /* border: 3px black solid; */
 }
 
 .pokemon-card .pokemon-container {
@@ -232,4 +233,49 @@ header img {
 
 .capsule .capsule-text {
     font-size: 1.5rem;
+}
+
+
+
+
+
+/* POKEMON COLOURS FOR TYPE/CARD */
+.black {
+    background-color: black;
+}
+
+.blue {
+    background-color: #3498db;
+}
+
+.brown {
+    background-color: #BDC581;
+}
+
+.gray {
+    background-color: #95a5a6;
+}
+
+.green {
+    background-color: #2ecc71;
+}
+
+.pink {
+    background-color: pink
+}
+
+.purple {
+    background-color: #9b59b6
+}
+
+.red {
+    background-color: #e74c3c;
+}
+
+.white {
+    background-color: #aaa
+}
+
+.yellow {
+    background-color: #f1c40f
 }

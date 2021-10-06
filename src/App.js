@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import PokemonCard from './components/PokemonCard';
+import PokemonGrid from './components/PokemonGrid';
 import SearchBar from './components/SearchBar';
 import Title from './components/Title';
 import pokemonAPI from './utilities/api/pokemon.api';
@@ -8,29 +8,21 @@ import pokemonAPI from './utilities/api/pokemon.api';
 const loadPokemon = new pokemonAPI();
 
 function App() {
-  const [pokemons, setPokemons] = useState([])
+  const [pokemon, setPokemon] = useState([])
 
   useEffect(() => {
-    loadPokemon.get()
+    loadPokemon.get("https://pokeapi.co/api/v2/pokemon/")
       .then(data => {
-        console.log(data)
-        setPokemons(data.results)
+        setPokemon(data.results)
       })
       .catch(err => console.log(err))
   }, [])
-
-  let pokemonCardsList = []
-  pokemons.forEach(pokemon => pokemonCardsList.push(<PokemonCard name={pokemon.name} />))
 
   return (
     <div className="App">
       <Title />
       <SearchBar />
-
-      <div className="grid-container">
-        {pokemonCardsList}
-      </div>
-
+      <PokemonGrid pokemon={pokemon} />
     </div>
   );
 }

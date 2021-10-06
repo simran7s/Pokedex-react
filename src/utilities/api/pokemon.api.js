@@ -1,7 +1,7 @@
 class pokemonAPI {
-    async get() {
+    async get(url) {
         // Fetch all pokemon from PokeAPI
-        const response = await fetch("https://pokeapi.co/api/v2/pokemon/")
+        const response = await fetch(url)
 
         const resData = await response.json()
 
