@@ -22,6 +22,8 @@ function SearchBar(props) {
                         }}
                         value={input}
                     />
+
+
                     <button type="submit" className="searchBar-btn" onClick={(e) => {
                         props.onClick(input)
                         e.preventDefault()

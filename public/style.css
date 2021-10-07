@@ -99,16 +99,9 @@
     padding: 3rem 7.5%;
     margin: auto;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-gap: 3rem;
-}
-
-@media (max-width: 700px) {
-    .grid-container {
-        grid-template-columns: 1fr 1fr;
-        grid-gap: 3rem;
-        padding: 1rem;
-    }
+    gap: 3rem;
+    /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
 /* Regular  */

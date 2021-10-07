@@ -49,6 +49,8 @@ function App() {
     }
   }, [nextURL, prevURL])
 
+
+  // Display spinner iff loading
   if (loading) return (
     <div className="App">
       <Title />
