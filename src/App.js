@@ -34,6 +34,7 @@ function App() {
       })
       .catch(err => {
         console.log(err);
+        // Display autoclosing error message 
         setErrorMessage("Something went wrong trying to load the Pokemon. Try again Later")
         setTimeout(() => {
           setErrorMessage("")

@@ -194,6 +194,7 @@ footer {
     width: fit-content;
     display: flex;
     margin: auto;
+    cursor: pointer;
 }
 
 .title {
