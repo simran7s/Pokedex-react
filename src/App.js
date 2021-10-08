@@ -35,6 +35,9 @@ function App() {
       .catch(err => {
         console.log(err);
         setErrorMessage("Something went wrong trying to load the Pokemon. Try again Later")
+        setTimeout(() => {
+          setErrorMessage("")
+        }, 5000);
       })
   }, [currentURL])
 
@@ -84,6 +87,9 @@ function App() {
         .catch(err => {
           console.log(err)
           setErrorMessage("Unable to find a Pokemon with that name or ID.")
+          setTimeout(() => {
+            setErrorMessage("")
+          }, 5000);
         })
     }
     // Give no name is given (reset)

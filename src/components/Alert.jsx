@@ -7,12 +7,15 @@ function Alert(props) {
         props.setErrorMessage("")
     }
 
+
     return (
         <div className="alert">
-            <i className="far fa-times-circle closebtn" onClick={() => {
-                onClick()
-            }}></i>
-            {props.errorMessage}
+            <p>{props.errorMessage}</p>
+            <i className="far fa-times-circle closebtn"
+                onClick={() => { onClick() }}
+            ></i>
+
+
         </div>
     )
 }
