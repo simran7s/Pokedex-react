@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Alert from './components/Alert';
 import AllPokemon from './components/AllPokemon';
 import Footer from './components/Footer';
+import Loading from './components/Loading';
 import SearchBar from './components/SearchBar';
 import SingleSearch from './components/SingleSearch';
 import Title from './components/Title';
@@ -27,9 +28,9 @@ function App() {
     setLoading(true)
     loadPokemon.get(currentURL)
       .then(data => {
+        setPokemon(data.results)
         setNextURL(data.next)
         setPrevURL(data.previous)
-        setPokemon(data.results)
         setLoading(false)
       })
       .catch(err => {
@@ -39,6 +40,7 @@ function App() {
         setTimeout(() => {
           setErrorMessage("")
         }, 5000);
+        setLoading(false)
       })
   }, [currentURL])
 
@@ -75,7 +77,9 @@ function App() {
 
   function searchPokemon(searchInput) {
     // If name is given
+    setLoading(true);
     if (searchInput) {
+      setErrorMessage("")
       loadPokemon.get(`https://pokeapi.co/api/v2/pokemon/${searchInput}`)
         .then(data => {
           setSearchInput(data.name)
@@ -84,13 +88,15 @@ function App() {
             name: data.name,
             info: data
           })
+          setLoading(false)
         })
         .catch(err => {
           console.log(err)
           setErrorMessage("Unable to find a Pokemon with that name or ID.")
-          setTimeout(() => {
-            setErrorMessage("")
-          }, 5000);
+          setLoading(false)
+          // setTimeout(() => {
+          //   setErrorMessage("")
+          // }, 5000);
         })
     }
     // Give no name is given (reset)
@@ -110,10 +116,11 @@ function App() {
 
       <SearchBar onClick={searchPokemon} />
 
+      {loading && <Loading />}
 
       {/* Display all pokemon when iff a valid search is not made */}
       {
-        !searchInput && <AllPokemon
+        !loading && !searchInput && <AllPokemon
           pokemon={pokemon}
           loadNext={loadNext}
           loadPrev={loadPrev}
@@ -123,7 +130,7 @@ function App() {
       }
 
       {/* Display pokemon card of the searched pokemon */}
-      {searchInput && < SingleSearch
+      {!loading && searchInput && < SingleSearch
         searchInput={searchInput}
         data={data} />}
       <Footer />

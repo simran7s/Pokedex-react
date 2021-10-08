@@ -263,6 +263,9 @@ header img {
     border-radius: 0 15px 15px 0;
     vertical-align: middle;
     position: relative;
+    background-color: transparent;
+    /* border: 1px black solid; */
+    color: black;
 }
 
 .searchBar .searchBar-btn:hover {
@@ -282,7 +285,8 @@ header img {
     width: fit-content;
     border: 3px solid black;
     border-radius: 15px;
-    margin: auto;
+    margin: 0;
+    padding: 0%;
 }
 
 /* Pokemon Cards*/
@@ -374,12 +378,6 @@ header img {
 
 }
 
-
-
-
-
-
-
 /* Footer */
 footer .title-box {
     width: fit-content;
@@ -388,8 +386,9 @@ footer .title-box {
     margin: auto;
 }
 
-.footer {
+.footer a {
     font-size: 3rem;
+    color: var(--light);
     padding: 1rem 1rem;
     font-weight: 400;
 }

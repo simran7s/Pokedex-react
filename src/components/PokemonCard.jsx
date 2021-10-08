@@ -1,20 +1,26 @@
-import React from "react"
-import { useEffect, useState } from "react/cjs/react.development"
+import React, { useState, useEffect } from "react"
+// import { useEffect, useState } from "react/cjs/react.development"
 import Capsule from "./Capsule"
 import pokemonAPI from '../utilities/api/pokemon.api'
 
 function PokemonCard(props) {
-    const { index, pokemon } = props
+
+
+    const [colour, setColour] = useState("");
+    const [speciesURL, setSpeciesURL] = useState("");
     const [currentPokemon, setCurrentPokemon] = useState({
         name: 'loading',
         sprites: {
             // front_default: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg'
             front_default: "https://i.gifer.com/Yg6z.gif"
         }
-    })
-    const [type, setType] = useState("")
-    const [speciesURL, setSpeciesURL] = useState("")
-    const [colour, setColour] = useState("")
+    });
+    const [type, setType] = useState("");
+
+    const { index, pokemon } = props;
+
+
+
 
     useEffect(() => {
         const loadPokemon = new pokemonAPI()

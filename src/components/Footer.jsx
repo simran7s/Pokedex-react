@@ -4,7 +4,7 @@ function Footer() {
     return (
         <footer className="bg-primary text-center text-light">
             <div className="title-box">
-                <h2 className="footer">Created by Simran</h2>
+                <h2 className="footer"><a href="https://github.com/simran7s">Created by Simran</a> </h2>
                 <h2 className="copyright">&copy; {new Date().getFullYear()}</h2>
             </div>
 
