@@ -1,11 +1,10 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import DetailedPokemon from './components/DetailedPokemon';
+import Alert from './components/Alert';
+import AllPokemon from './components/AllPokemon';
 import Footer from './components/Footer';
-import LoadButton from './components/LoadButton';
-import PokemonCard from './components/PokemonCard';
-import PokemonGrid from './components/PokemonGrid';
 import SearchBar from './components/SearchBar';
+import SingleSearch from './components/SingleSearch';
 import Title from './components/Title';
 import pokemonAPI from './utilities/api/pokemon.api';
 
@@ -20,8 +19,9 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [disablePrev, setDisablePrev] = useState(false)
   const [disableNext, setDisableNext] = useState(false)
-  const [name, setName] = useState("");
+  const [searchInput, setSearchInput] = useState("");
   const [data, setData] = useState({});
+  const [errorMessage, setErrorMessage] = useState("")
 
   useEffect(() => {
     setLoading(true)
@@ -32,7 +32,10 @@ function App() {
         setPokemon(data.results)
         setLoading(false)
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        console.log(err);
+        setErrorMessage("Something went wrong trying to load the Pokemon. Try again Later")
+      })
   }, [currentURL])
 
 
@@ -55,7 +58,7 @@ function App() {
     <div className="App">
       <Title />
       <SearchBar />
-      <div class="loader"></div>
+      <div className="loader"></div>
     </div>
   )
 
@@ -66,51 +69,58 @@ function App() {
     setCurrentURL(prevURL);
   }
 
-  function searchPokemon(name) {
+  function searchPokemon(searchInput) {
     // If name is given
-    if (name) {
-      loadPokemon.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
+    if (searchInput) {
+      loadPokemon.get(`https://pokeapi.co/api/v2/pokemon/${searchInput}`)
         .then(data => {
-          setName(data.name)
+          setSearchInput(data.name)
           setData({
-            url: `https://pokeapi.co/api/v2/pokemon/${name}`,
+            url: `https://pokeapi.co/api/v2/pokemon/${searchInput}`,
             name: data.name,
             info: data
           })
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+          console.log(err)
+          setErrorMessage("Unable to find a Pokemon with that name or ID.")
+        })
     }
     // Give no name is given (reset)
     else {
       setCurrentURL(`https://pokeapi.co/api/v2/pokemon?limit=${NUMBER_OF_POKEMON_ON_LOAD}`)
-      setName("")
+      setSearchInput("")
+      setErrorMessage("")
     }
   }
 
   return (
     <div className="App">
       <Title />
+
+      {/* Display error message when there is an error message */}
+      {errorMessage && <Alert errorMessage={errorMessage} setErrorMessage={setErrorMessage} />}
+
       <SearchBar onClick={searchPokemon} />
-      {!name &&
-        <>
-          <PokemonGrid pokemon={pokemon} setLoading={setLoading} />
-          <div className="btn-container">
-            <LoadButton text="PREV PAGE" onClick={loadPrev} disable={disablePrev} />
-            <LoadButton text="NEXT PAGE" onClick={loadNext} disable={disableNext} />
-          </div>
-        </>
-      }
-      {/* {name && <DetailedPokemon name={name} data={data} />} */}
-      {name &&
-        <div className="grid-container">
 
-          <PokemonCard key={name} index={name} pokemon={data} setLoading={setLoading} />
-          <p></p>
-        </div>
 
+      {/* Display all pokemon when iff a valid search is not made */}
+      {
+        !searchInput && <AllPokemon
+          pokemon={pokemon}
+          loadNext={loadNext}
+          loadPrev={loadPrev}
+          disableNext={disableNext}
+          disablePrev={disablePrev}
+        />
       }
+
+      {/* Display pokemon card of the searched pokemon */}
+      {searchInput && < SingleSearch
+        searchInput={searchInput}
+        data={data} />}
       <Footer />
-    </div>
+    </div >
   );
 }
 

@@ -4,7 +4,7 @@ import Capsule from "./Capsule"
 import pokemonAPI from '../utilities/api/pokemon.api'
 
 function PokemonCard(props) {
-    const { index, pokemon, setLoading } = props
+    const { index, pokemon } = props
     const [currentPokemon, setCurrentPokemon] = useState({
         name: 'loading',
         sprites: {
@@ -16,7 +16,6 @@ function PokemonCard(props) {
     const [speciesURL, setSpeciesURL] = useState("")
     const [colour, setColour] = useState("")
 
-    setLoading(true)
     useEffect(() => {
         const loadPokemon = new pokemonAPI()
         // MAIN DETAILS
@@ -47,8 +46,6 @@ function PokemonCard(props) {
     useEffect(() => {
         currentPokemon.colour = colour
     }, [colour, currentPokemon])
-
-    setLoading(false)
     return (
         <div className={`pokemon-card ${colour}`} id={currentPokemon.name} >
             <div className="pokemon-container text-light">

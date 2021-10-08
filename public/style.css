@@ -99,6 +99,10 @@
         width: 1850px;
     }
 
+    .app {
+        width: 1850px;
+    }
+
     .container {
         margin: auto;
         padding: 1rem;
@@ -150,22 +154,27 @@ footer {
     width: 100vw;
 }
 
-
+/* ALERT */
 .alert {
-    margin: auto;
-    background: var(--primary);
-    border-radius: 15px;
-    position: absolute;
-    top: 9rem;
-    left: 0%;
-    width: 15rem;
-    color: var(--light);
-    margin: 1rem;
-    padding: 1rem;
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    text-align: center;
+    font-size: 3rem;
 }
 
-.alert h2 {
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
     font-size: 3rem;
+    cursor: pointer;
+    float: right;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: var(--dark);
 }
 
 
@@ -206,7 +215,7 @@ header img {
 
 }
 
-@media (max-width: 340px) {
+@media (max-width: 440px) {
     .searchBar .searchBar-input {
         width: 70vw
     }

@@ -1,10 +1,7 @@
 import React from 'react'
-// import pokemonAPI from '../utilities/api/pokemon.api'
-
-
 
 function LoadButton(props) {
-    // const loadPokemon = new pokemonAPI()
+
     const { text, onClick } = props
     return (
         <div className="div">
