@@ -13,7 +13,7 @@
     margin: 0;
     padding: 0;
     text-decoration: none;
-    font-size: 10px;
+    font-size: 12px;
     font-family: 'Teko', sans-serif;
 }
 
@@ -94,6 +94,18 @@
     padding: 1rem;
 }
 
+@media (min-width: 1850px) {
+    .grid-container {
+        width: 1850px;
+    }
+
+    .container {
+        margin: auto;
+        padding: 1rem;
+    }
+
+}
+
 .grid-container {
     /* padding: var(--default-margin); */
     padding: 3rem 7.5%;
@@ -138,6 +150,25 @@ footer {
     width: 100vw;
 }
 
+
+.alert {
+    margin: auto;
+    background: var(--primary);
+    border-radius: 15px;
+    position: absolute;
+    top: 9rem;
+    left: 0%;
+    width: 15rem;
+    color: var(--light);
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.alert h2 {
+    font-size: 3rem;
+}
+
+
 /* title / header */
 .title-box {
     width: fit-content;
@@ -172,6 +203,30 @@ header img {
     border-radius: 15px;
     vertical-align: middle;
     outline: none;
+
+}
+
+@media (max-width: 340px) {
+    .searchBar .searchBar-input {
+        width: 70vw
+    }
+
+    .searchBar .searchBar-input::placeholder {
+        font-size: 2rem;
+    }
+
+    .title {
+        /* padding: 1rem; */
+        font-size: 3rem;
+        padding: 0 1rem;
+    }
+
+    header img {
+        height: 3rem;
+        width: 3rem;
+        margin: auto 0;
+    }
+
 }
 
 .searchBar .searchBar-btn {
@@ -301,6 +356,7 @@ header img {
 
 /* Footer */
 footer .title-box {
+
     width: fit-content;
     display: flex;
     flex-direction: column;
@@ -312,7 +368,10 @@ footer .title-box {
     font-size: 3rem;
     padding: 1rem 1rem;
     font-weight: 400;
-
+    /* position: absolute;
+    bottom: 0;
+    left: 0;
+    */
 }
 
 .copyright {
@@ -336,20 +395,20 @@ footer .title-box {
 }
 
 .brown {
-    background-color: #BDC581;
+    background-color: #ccae62;
     /* background-color: g; */
 }
 
 .gray {
-    background-color: #95a5a6;
+    background-color: #84817a;
 }
 
 .green {
-    background-color: #2ecc71;
+    background-color: #27ae60;
 }
 
 .pink {
-    background-color: pink
+    background-color: #e84393
 }
 
 .purple {
@@ -357,13 +416,13 @@ footer .title-box {
 }
 
 .red {
-    background-color: #e74c3c;
+    background-color: #c0392b;
 }
 
 .white {
-    background-color: #aaa
+    background-color: #95afc0;
 }
 
 .yellow {
-    background-color: #f1c40f
+    background-color: #f39c12
 }

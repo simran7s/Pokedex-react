@@ -24,7 +24,7 @@ function SearchBar(props) {
                     />
 
 
-                    <button type="submit" className="searchBar-btn" onClick={(e) => {
+                    <button aria-label="click to search" type="submit" className="searchBar-btn" onClick={(e) => {
                         props.onClick(input)
                         e.preventDefault()
                     }
