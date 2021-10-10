@@ -4,7 +4,7 @@ function SearchBar(props) {
     const [input, setInput] = useState("")
 
     function onChange(e) {
-        setInput(e.target.value)
+        setInput(e.target.value.toLowerCase())
         // console.log(e.target.value)
     }
 
